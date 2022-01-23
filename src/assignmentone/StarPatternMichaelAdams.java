@@ -29,33 +29,28 @@ public class StarPatternMichaelAdams {
 
         input.close();
     }
-    // Prints the spaces
-    public static void printSpaces(int numberOfRows) {
-        if (numberOfRows < 1) {
-            return;
-        }
-        System.out.print(" ");
-        printSpaces(numberOfRows - 1);
-    }
 
     // Prints each row
     public static void printRow(int numberOfRows) {
+
+        // base case, if number of rows is less than 1 then return
         if (numberOfRows < 1) {
             return;
         }
-        System.out.print("*");
+        System.out.print(" *");
         printRow(numberOfRows - 1);
     }
 
+
+    // Prints the stars
     public static void printStars(int numberOfRows) {
-        int currentRow = 0;
         // Prints pattern
         if (numberOfRows < 1) {
             return;
         }
-        printSpaces(numberOfRows);
+
+        printStars(numberOfRows - 1);
         printRow(numberOfRows);
         System.out.println();
-        printStars(currentRow++);
     }
 }

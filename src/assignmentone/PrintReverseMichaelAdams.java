@@ -36,11 +36,15 @@ public class PrintReverseMichaelAdams {
         input.close();
     }
 
-
+    // Print Characters Reversed method
     public static String printCharsReverse(String str) {
+
+        // base case, if string is empty then return the string because it cannot be reversed
         if (str.isEmpty()) {
             return str;
         }
+
+        // returns a substring with the string's first character to the printCharsReverse() method
         return printCharsReverse(str.substring(1)) + str.charAt(0);
     }
 }
