@@ -19,7 +19,7 @@ public class PrintReverseMichaelAdams {
             System.out.println("Enter a string.");
 
             // User inputs string
-            String str = input.next();
+            String str = input.nextLine();
             // Outputs user entered string
             System.out.println("Entered string:\t\t\t\t" + str);
 
@@ -30,7 +30,7 @@ public class PrintReverseMichaelAdams {
 
             // Ask user to try again
             System.out.println("Try again (Y/N):\t\t\t");
-            tryAgain = input.next();
+            tryAgain = input.nextLine();
         } while(tryAgain.equalsIgnoreCase("Y"));
 
         input.close();

@@ -32,11 +32,13 @@ public class AverageGradeMichaelAdams {
             Double average = findAverage(grades);
 
             // Print everything
-            System.out.println("Class size:\t\t\t\t" + classSize + "\nEntered grades:\t\t\t" + Arrays.toString(grades) + "\nClass average:\t\t\t" + String.format("%,.1f",average));
+            System.out.println("Class size:\t\t\t\t" + classSize);
+            System.out.println("Entered grades:\t\t\t" + Arrays.toString(grades));
+            System.out.println("Class average:\t\t\t" + String.format("%,.1f",average));
 
 
             // Ask user if they want to enter more grades
-            System.out.println("Enter more grades (Y/N):\t\t\t");
+            System.out.println("Enter more grades (Y/N):");
             enterMoreGrades = input.next();
         } while (enterMoreGrades.equalsIgnoreCase("Y"));
 
