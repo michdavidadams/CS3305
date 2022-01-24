@@ -5,6 +5,7 @@ package assignmentone;
 // Program Number:	2
 // IDE: 			Visual Studio Code 1.63.2
 
+import java.util.Arrays;
 import java.util.Scanner;
 public class AverageGradeMichaelAdams {
 
@@ -12,7 +13,7 @@ public class AverageGradeMichaelAdams {
         Scanner input = new Scanner(System.in);
 
         // Will continue looping program until user enters "N"
-        String enterMoreGrades = "";
+        String enterMoreGrades;
         do {
 
             // Ask and receive class size
@@ -31,7 +32,7 @@ public class AverageGradeMichaelAdams {
             Double average = findAverage(grades);
 
             // Print everything
-            System.out.println("Class size:\t\t\t" + classSize + "\nEntered grades:\t\t\t" + grades.toString() + "\nClass average:\t\t\t" + average);
+            System.out.println("Class size:\t\t\t\t" + classSize + "\nEntered grades:\t\t\t" + Arrays.toString(grades) + "\nClass average:\t\t\t" + String.format("%,.1f",average));
 
 
             // Ask user if they want to enter more grades

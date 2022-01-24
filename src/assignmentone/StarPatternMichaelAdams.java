@@ -12,7 +12,7 @@ public class StarPatternMichaelAdams {
         Scanner input = new Scanner(System.in);
 
         // Will continue looping program until user enters "N"
-        String tryAgain = "";
+        String tryAgain;
         do {
 
             // Ask and receive number of rows
@@ -20,7 +20,7 @@ public class StarPatternMichaelAdams {
             int numberOfRows = input.nextInt();
 
             // Call printRows method, which itself calls printStars method
-            printStars(numberOfRows);
+            printStars(numberOfRows, numberOfRows);
 
             // Ask user if they want to enter more grades
             System.out.println("Try Again? (Y/N):\t\t\t");
@@ -31,26 +31,42 @@ public class StarPatternMichaelAdams {
     }
 
     // Prints each row
-    public static void printRow(int numberOfRows) {
-
-        // base case, if number of rows is less than 1 then return
+    public static void printRows(int numberOfRows) {
+        // base case
         if (numberOfRows < 1) {
             return;
         }
-        System.out.print(" *");
-        printRow(numberOfRows - 1);
+
+        // prints stars
+        System.out.print("* ");
+
+        // recursively calls itself
+        printRows(numberOfRows - 1);
     }
 
-
     // Prints the stars
-    public static void printStars(int numberOfRows) {
-        // Prints pattern
+    public static void printStars(int numberOfRows, int number) {
+        // base case
         if (numberOfRows < 1) {
             return;
         }
 
-        printStars(numberOfRows - 1);
-        printRow(numberOfRows);
+        printSpaces(numberOfRows - 1);
+        printRows(number - numberOfRows + 1);
         System.out.println();
+
+        // recursively calls itself
+        printStars(numberOfRows - 1, number);
+    }
+
+    // prints the spaces
+    public static void printSpaces(int numberOfRows) {
+        // base case
+        if (numberOfRows == 0)
+            return;
+        System.out.print(" ");
+
+        // recursively calls itself
+        printSpaces(numberOfRows - 1);
     }
 }

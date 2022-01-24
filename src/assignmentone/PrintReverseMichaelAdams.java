@@ -12,7 +12,7 @@ public class PrintReverseMichaelAdams {
         Scanner input = new Scanner(System.in);
 
         // Will continue looping program until user enters "N"
-        String tryAgain = "";
+        String tryAgain;
         do {
 
             // Print string prompt
@@ -21,7 +21,7 @@ public class PrintReverseMichaelAdams {
             // User inputs string
             String str = input.next();
             // Outputs user entered string
-            System.out.println("Entered string:\t\t\t" + str);
+            System.out.println("Entered string:\t\t\t\t" + str);
 
             // Reverse string
             String strReversed = printCharsReverse(str);
