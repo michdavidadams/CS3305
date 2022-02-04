@@ -1,4 +1,9 @@
 package assignmenttwo;
+// Class:			Data Structures W01
+// Term:			Spring 2022
+// Name:			Michael Adams
+// Program Number:	Assignment 2
+// IDE: 			IntelliJ IDEA 2021.3.2
 
 public class MyLinkedListMichaelAdams <T> {
 	Node head;
@@ -37,15 +42,17 @@ public class MyLinkedListMichaelAdams <T> {
 	}
 	public void addLast(T newElement){
 		Node newNode = new Node(newElement);
-		newNode.link = tail;
-		tail = newNode;
 		if(size==0) {
-			tail = newNode;
+			addFirst(newElement);
+			return;
 		}
+		tail.link = newNode;
+		tail = newNode;
 		size++;
 	}
+
 	public void removeLast(){
-		// Case 1: if the list is empty --> throw any Exception with a mess
+		// Case 1: if the list is empty --> throw any Exception
 		if (tail == null) {
 			try {
 				throw new Exception("List is empty");
@@ -58,6 +65,11 @@ public class MyLinkedListMichaelAdams <T> {
 			size --;
 			// Case 3: in general case
 		} else {
+			Node secondToLast = head;
+			while (secondToLast.link.link != null) {
+				secondToLast = secondToLast.link;
+				secondToLast.link = null;
+			}
 			tail = tail.link;
 			size--;
 		}
@@ -65,6 +77,17 @@ public class MyLinkedListMichaelAdams <T> {
 	
 	public int indexOf(T targetElement){
 		// search the targetElement in the list, return the index of given targetElement if it exists.
+		int index = 0;
+		Node current = head;
+
+		while(current != null) {
+			if (current.equals(targetElement)) {
+				return index;
+			}
+			index++;
+			current = current.link;
+		}
+		return -1;
 		// if the list doesn't have targetElement, return -1
 		// Caution: index starts with 0  (the first element's index is 0)
 		// Caution: to return index, you must check the index of node while you searching
