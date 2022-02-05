@@ -66,13 +66,14 @@ public class MyLinkedListMichaelAdams <T> {
 		int index = 0;
 		Node current = head;
 
-		while(current != null) {
-			if (current.equals(targetElement)) {
+		while (current != null) {
+			if (current.data.equals(targetElement)) {
 				return index;
 			}
 			index++;
 			current = current.link;
 		}
+
 		return -1;
 	}
 	
