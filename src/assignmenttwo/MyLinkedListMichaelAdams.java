@@ -15,25 +15,34 @@ public class MyLinkedListMichaelAdams <T> {
 		tail = null;
 		size = 0;
 	}
-	
+
+	// Gets the first element in the list
 	public T getFirst() throws RuntimeException{
+		// If head is empty, throw exception
 		if (head == null) {
 			throw new RuntimeException("Head is null");
+			// Otherwise, returns first element in list
 		} else {
 			return head.data;
 		}
 	}
 
+	// Get last element in list
 	public T getLast() throws RuntimeException{
+		// If tail is empty, throw exception
 		if (tail == null) {
 			throw new RuntimeException("Tail is null");
+			// Otherwise, returns last element in list
 		} else {
 			return tail.data;
 		}
 	}
 
+	// Add given element to end of list
 	public void addLast(T newElement){
+		// Create a new node to hold element
 		Node newNode = new Node(newElement);
+		// If list is empty, add node to beginning of list
 		if(size==0) {
 			addFirst(newElement);
 			return;
@@ -43,37 +52,49 @@ public class MyLinkedListMichaelAdams <T> {
 		size++;
 	}
 
+	// Removes last element in list
 	public void removeLast(){
+		// If list is empty, throw exception
 		if(head == null) {
 			throw new RuntimeException("in removeLast(): no elements in the list");
 		}
-		else if(head == tail) { // if(size==1)
+		// If size of list is one, then remove the element
+		else if(head == tail) {
 			head = tail = null;
 			size --;
 		}
+		// General case
 		else {
-			Node current = head;
-			while (current.link != tail) {
-				current = current.link;
+			// Point the current node to beginning of list
+			Node newNode = head;
+			// While node isn't the tail, point node to next element
+			while (newNode.link != tail) {
+				newNode = newNode.link;
 			}
-			current.link = null;
-			tail = current;
+			// Node is tail at this point, so null
+			newNode.link = null;
+			// Update tail to equal node
+			tail = newNode;
 		}
 	}
 
+	// Finds index of given targetElement in list and returns its index, if it exists.
 	public int indexOf(T targetElement){
-		// search the targetElement in the list, return the index of given targetElement if it exists.
 		int index = 0;
-		Node current = head;
-
-		while (current != null) {
-			if (current.data.equals(targetElement)) {
+		// Points new node to head of list
+		Node newNode = head;
+		// While new node isn't empty
+		while (newNode != null) {
+			// If new node element equals given targetElement, return its index
+			if (newNode.data.equals(targetElement)) {
 				return index;
 			}
 			index++;
-			current = current.link;
+			// Update new node
+			newNode = newNode.link;
 		}
 
+		// Return -1 by default
 		return -1;
 	}
 	
