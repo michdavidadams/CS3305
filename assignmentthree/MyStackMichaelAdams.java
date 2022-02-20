@@ -5,28 +5,24 @@ package assignmentthree;
 // Program Number:	3
 // IDE: 			Visual Studio Code 1.64.2
 
-import java.util.ArrayList;
-
 public class MyStackMichaelAdams<E> {
     // Current size of stack
     int size;
     // Maximum size of stack
     int MAX_SIZE;
     // Data array
-    ArrayList<E> S;
+    E[] S;
     // Index of top
     E top;
 
     MyStackMichaelAdams() {
-        size = 0;
-        MAX_SIZE = 0;
-        top = null;
-        S = new ArrayList<>();
+        size = 10;
+        MAX_SIZE = 10;
     }
 
     // Returns true if stack is empty
     public boolean isEmpty() {
-        if (S.isEmpty()) {
+        if (S.length <= 0) {
             return true;
         }
         return false;
@@ -42,17 +38,17 @@ public class MyStackMichaelAdams<E> {
         if (size == 0) {
             throw new RuntimeException("Stack is empty");
         }
-        return S.get(0);
+        return S[0];
     }
 
     // Returns and removes top element in stack
     public E pop() {
         if (!isEmpty()) {
-            top = S.get(size - 1);
-            S.remove(size - 1);
+            top = S[size - 1];
+            S[size - 1] = null;
             size--;
         }
-        return S.get(size - 1);
+        return S[size - 1];
     }
 
     // Adds new element to top of stack
@@ -61,7 +57,7 @@ public class MyStackMichaelAdams<E> {
             throw new RuntimeException("Max size reached.");
         }
         top = element;
-        S.add(element);
+        S[size] = element;
         size++;
         return element;
     }

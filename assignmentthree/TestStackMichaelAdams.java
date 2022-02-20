@@ -29,17 +29,8 @@ public class TestStackMichaelAdams {
         userInput = input.nextInt();
 
         } while(userInput != 0);
+
+        input.close();
     }
 
-    public class ExprMichaelAdams {
-        public static String infixToPostfix(String infix){
-           TestStackMichaelAdams stackOne = new TestStackMichaelAdams();
-           
-
-
-
-            // Return postfix as a returned String of this method
-            }
-            
-    }
 }
