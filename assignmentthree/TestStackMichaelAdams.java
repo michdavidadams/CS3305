@@ -15,6 +15,9 @@ public class TestStackMichaelAdams {
         // Holds sentinel value
         int userInput;
 
+        // Creates Stack
+        MyStackMichaelAdams stack = new MyStackMichaelAdams();
+
         do {
         System.out.println("-----MAIN MENU-----");
         System.out.println("0 - Exit Program");
@@ -27,6 +30,43 @@ public class TestStackMichaelAdams {
         System.out.println("Choose menu:");
 
         userInput = input.nextInt();
+
+        switch (userInput) {
+            
+            // Allows user to enter a string and pushes its content to top of stack
+            case 1:
+            System.out.println("Enter contents to push");
+            String userString = input.nextLine();
+            stack.push(userString);
+            break;
+
+            // Removes and returns top element in stack
+            case 2:
+            System.out.println(stack.pop());
+
+            // Returns top element of stack
+            case 3:
+            System.out.println(stack.peek());
+
+            // Returns size of stack
+            case 4:
+            System.out.println(stack.size());
+
+            // Is the stack empty?
+            case 5:
+            if (stack.isEmpty()) {
+                System.out.println("The stack is empty.");
+            } else {
+                System.out.println("The stack is not empty.");
+            }
+
+            // Prints contents of stack
+            case 6:
+            System.out.println(stack.toString());
+
+            default:
+            break;
+        }
 
         } while(userInput != 0);
 
