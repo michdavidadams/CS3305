@@ -16,8 +16,6 @@ public class MyStackMichaelAdams<E> {
     E top;
 
     MyStackMichaelAdams() {
-        size = 10;
-        MAX_SIZE = 10;
     }
 
     // Returns true if stack is empty
@@ -52,14 +50,16 @@ public class MyStackMichaelAdams<E> {
     }
 
     // Adds new element to top of stack
-    public E push(E element) throws RuntimeException {
-        if (size >= MAX_SIZE) {
-            throw new RuntimeException("Max size reached.");
-        }
-        top = element;
-        S[size] = element;
-        size++;
+    public E push(E element) {
+        if (size > MAX_SIZE) {
+            System.out.println("Max size reached.");
+        } else {
+        this.top = element;
+        this.S[size] = element;
+        this.size++;
         return element;
+        }
+        return null;
     }
 
     // Returns string containing all elements in stack
