@@ -5,65 +5,50 @@ package assignmentthree;
 // Program Number:	3
 // IDE: 			Visual Studio Code 1.64.2
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyStackMichaelAdams<E> {
-    // Current size of stack
-    int size;
-    // Maximum size of stack
-    int MAX_SIZE;
-    // Data array
-    E[] S;
-    // Index of top
-    E top;
-
-    MyStackMichaelAdams() {
-
-    }
+    public List<E> S = new ArrayList<>();
 
     // Returns true if stack is empty
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }
-        return false;
+        return S.isEmpty();
     }
 
     // Returns number of elements in stack
     public int size() {
-        return size;
+        return S.size();
     }
 
     // Returns top element in stack
     public E peek() {
-        if (!isEmpty()) {
-            return S[size];
+        if (S.isEmpty()) {
+            return null;
         }
-        return null;
+        return (E) S.get(S.size() - 1);
     }
 
     // Returns and removes top element in stack
     public E pop() {
-        if (isEmpty()) {
-            System.out.println("Stack is empty, can't pop.");
+        if (S.isEmpty()) {
+            return null;
         }
-        return S[size];
+        String top = (String) S.get(S.size() - 1);
+		S.remove(S.size() - 1);
+		return (E) top;
     }
 
     // Adds new element to top of stack
     public E push(E element) {
-        if (size >= MAX_SIZE) {
-            System.out.println("Max size reached.");
-        } else {
-            size++;
-            S[size] = element;
-            return element;
-        }
+        S.add(element);
         return element;
     }
 
     // Returns string containing all elements in stack
-    public String toString() throws RuntimeException {
-        if (isEmpty()) {
-            throw new RuntimeException("Stack is empty");
+    public String toString() {
+        if (S.isEmpty()) {
+            return null;
         }
         String stringStack = "";
         for (E i : S) {

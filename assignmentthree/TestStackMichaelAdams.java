@@ -16,10 +16,7 @@ public class TestStackMichaelAdams {
         int userInput;
 
         // Creates Stack
-        MyStackMichaelAdams stack = new MyStackMichaelAdams();
-        stack.size = 0;
-        stack.MAX_SIZE = 10;
-        stack.S = new String[10];
+        MyStackMichaelAdams<String> stack = new MyStackMichaelAdams<>();
 
         do {
             // Menu options

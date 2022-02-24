@@ -39,12 +39,12 @@ public class ExprMichaelAdams {
 
 	}
 
-	public static int precedence(char text) {
-		if (text == '+' || text == '-') {
+	public static int precedence(char c) {
+		if (c == '+' || c == '-') {
 			return 1;
-		} else if (text == '*' || text == '/') {
+		} else if (c == '*' || c == '/') {
 			return 2;
-		} else if (text == '^') {
+		} else if (c == '^') {
 			return 3;
 		}
 		return -1;
@@ -53,10 +53,8 @@ public class ExprMichaelAdams {
 	public static String infixToPostfix(String infix) {
 		String result = "";
 		int size = infix.length();
-		MyStackMichaelAdams stack = new MyStackMichaelAdams();
-		stack.S = new Character[infix.length()];
-		stack.size = 0;
-		stack.MAX_SIZE = size;
+		MyStackMichaelAdams<Character> stack = new MyStackMichaelAdams();
+		stack.S = new ArrayList<Character>();
 		for (int i = 0; i < size; i++) {
 			if ((infix.charAt(i) >= '0' && infix.charAt(i) <= '9') || (infix.charAt(i) >= 'a' && infix.charAt(i) <= 'z')
 					|| (infix.charAt(i) >= 'A' && infix.charAt(i) <= 'Z')) {
@@ -69,20 +67,20 @@ public class ExprMichaelAdams {
 					stack.push(infix.charAt(i));
 				} else if (infix.charAt(i) == ')') {
 					// Need to remove stack element until the close bracket
-					while (!stack.isEmpty() && (Character) stack.peek() != '(') {
+					while (!stack.isEmpty() && (stack.peek() != '(')) {
 						// Get top element
 						result += stack.peek();
 						// Remove stack element
 						stack.pop();
 					}
-					if ((Character) stack.peek() == '(') {
+					if (stack.peek() == '(') {
 						// Remove stack element
 						stack.pop();
 					}
 				} else {
 					// Remove stack element until precedence of
 					// top is greater than current infix operator
-					while (!stack.isEmpty() && precedence(infix.charAt(i)) <= precedence((char) stack.peek())) {
+					while (!stack.isEmpty() && precedence(infix.charAt(i)) <= precedence(stack.peek())) {
 						// Get top element
 						result += stack.peek();
 						// Remove stack element
