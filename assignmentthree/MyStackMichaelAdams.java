@@ -16,11 +16,12 @@ public class MyStackMichaelAdams<E> {
     E top;
 
     MyStackMichaelAdams() {
+
     }
 
     // Returns true if stack is empty
     public boolean isEmpty() {
-        if (S.length <= 0) {
+        if (size == 0) {
             return true;
         }
         return false;
@@ -33,33 +34,30 @@ public class MyStackMichaelAdams<E> {
 
     // Returns top element in stack
     public E peek() {
-        if (size == 0) {
-            throw new RuntimeException("Stack is empty");
+        if (!isEmpty()) {
+            return S[size];
         }
-        return S[0];
+        return null;
     }
 
     // Returns and removes top element in stack
     public E pop() {
-        if (!isEmpty()) {
-            top = S[size - 1];
-            S[size - 1] = null;
-            size--;
+        if (isEmpty()) {
+            System.out.println("Stack is empty, can't pop.");
         }
-        return S[size - 1];
+        return S[size];
     }
 
     // Adds new element to top of stack
     public E push(E element) {
-        if (size > MAX_SIZE) {
+        if (size >= MAX_SIZE) {
             System.out.println("Max size reached.");
         } else {
-        this.top = element;
-        this.S[size] = element;
-        this.size++;
-        return element;
+            size++;
+            S[size] = element;
+            return element;
         }
-        return null;
+        return element;
     }
 
     // Returns string containing all elements in stack
