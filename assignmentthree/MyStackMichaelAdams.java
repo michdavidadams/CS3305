@@ -31,17 +31,8 @@ public class MyStackMichaelAdams<E> {
 
     // Returns and removes top element in stack
     public E pop() {
-		int index = 0;
-		for(int y = 0; y < S.size(); y++) 
-		{
-			if(S.get(y) == null) 
-			{
-				index = y-1;
-				break;
-			}
-		}
-		E character = S.get(index);
-		S.remove(index);
+		E character = S.get(S.size() - 1);
+		S.remove(S.size() - 1);
 		return character;
     }
 

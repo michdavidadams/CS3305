@@ -121,7 +121,6 @@ public class ExprMichaelAdams {
 						break;
 				}
 			}
-			// Current Char is Operand simple push into stack
 			else {
 				// convert to integer
 				int operand = postfix.charAt(i) - '0';
