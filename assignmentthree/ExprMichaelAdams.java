@@ -127,11 +127,12 @@ public class ExprMichaelAdams {
 					case '/':
 						stack.push(operator2 / operator1);
 						break;
+					case '^':
+						stack.push((int) Math.pow(operator1, operator2));
+						break;
 				}
 			} else {
-				// convert to integer
-				int operand = postfix.charAt(i) - '0';
-				stack.push(operand);
+				stack.push(postfix.charAt(i) - '0');
 			}
 		}
 
