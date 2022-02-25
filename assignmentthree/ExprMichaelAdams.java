@@ -77,7 +77,8 @@ public class ExprMichaelAdams {
 					operators.pop();
 					// operator
 				} else {
-					while (!operators.isEmpty() && orderOfOperations(infixCharacter) <= orderOfOperations(operators.peek())) {
+					while (!operators.isEmpty()
+							&& orderOfOperations(infixCharacter) <= orderOfOperations(operators.peek())) {
 						postfix.push(operators.pop());
 					}
 					operators.push(infixCharacter);
@@ -106,7 +107,8 @@ public class ExprMichaelAdams {
 
 		for (int i = 0; i < n; i++) {
 			// if character at this index of postfix is an operator, pop
-			if (postfix.charAt(i) == '+' || postfix.charAt(i) == '-' || postfix.charAt(i) == '*' || postfix.charAt(i) == '/' || postfix.charAt(i) == '^') {
+			if (postfix.charAt(i) == '+' || postfix.charAt(i) == '-' || postfix.charAt(i) == '*'
+					|| postfix.charAt(i) == '/' || postfix.charAt(i) == '^') {
 				// pop the top 2 operands
 				int operator1 = stack.pop();
 				int operator2 = stack.pop();
@@ -114,19 +116,15 @@ public class ExprMichaelAdams {
 				// evaluates in reverse order, operator2 before operator
 				switch (postfix.charAt(i)) {
 					case '+':
-					System.out.println(operator2 + "+" + operator1);
 						stack.push(operator2 + operator1);
 						break;
 					case '-':
-					System.out.println(operator2 + "-" + operator1);
 						stack.push(operator2 - operator1);
 						break;
 					case '*':
-					System.out.println(operator2 + "*" + operator1);
 						stack.push(operator2 * operator1);
 						break;
 					case '/':
-					System.out.println(operator2 + "/" + operator1);
 						stack.push(operator2 / operator1);
 						break;
 				}
