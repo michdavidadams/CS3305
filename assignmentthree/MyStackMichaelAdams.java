@@ -26,7 +26,7 @@ public class MyStackMichaelAdams<E> {
         if (S.isEmpty()) {
             return null;
         }
-        return (E) S.get(S.size() - 1);
+        return S.get(S.size() - 1);
     }
 
     // Returns and removes top element in stack
@@ -45,14 +45,15 @@ public class MyStackMichaelAdams<E> {
     // Returns string containing all elements in stack
     public String toString() {
         if (S.isEmpty()) {
-            return null;
+            return "";
         }
         String stringStack = "";
-        for (E i : S) {
-            stringStack += i + " ";
+        for (E i: S) {
+            stringStack += i + "";
         }
         return stringStack;
     }
+
     public char getNext() {
 		int index = 0;
 		for(int y = 0; y < S.size(); y++) 
@@ -62,8 +63,7 @@ public class MyStackMichaelAdams<E> {
 				break;
 			}
 		}
-		char character = (char) S.get(index);
-		return character;
+		return (char) S.get(index);
 	}
 
 }
