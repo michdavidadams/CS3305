@@ -31,12 +31,18 @@ public class MyStackMichaelAdams<E> {
 
     // Returns and removes top element in stack
     public E pop() {
-        if (S.isEmpty()) {
-            return null;
-        }
-        String top = (String) S.get(S.size() - 1);
-		S.remove(S.size() - 1);
-		return (E) top;
+		int index = 0;
+		for(int y = 0; y < S.size(); y++) 
+		{
+			if(S.get(y) == null) 
+			{
+				index = y-1;
+				break;
+			}
+		}
+		E character = S.get(index);
+		S.remove(index);
+		return character;
     }
 
     // Adds new element to top of stack
@@ -56,4 +62,17 @@ public class MyStackMichaelAdams<E> {
         }
         return stringStack;
     }
+    public char getNext() {
+		int index = 0;
+		for(int y = 0; y < S.size(); y++) 
+		{
+			if(S.get(y) == null) {
+				index = y-1;
+				break;
+			}
+		}
+		char character = (char) S.get(index);
+		return character;
+	}
+
 }

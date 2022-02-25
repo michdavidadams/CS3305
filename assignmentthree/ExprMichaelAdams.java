@@ -6,9 +6,6 @@ package assignmentthree;
 // Program Number:	3
 // IDE: 			Visual Studio Code 1.64.2
 
-import java.util.List;
-import java.util.Stack;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ExprMichaelAdams {
@@ -25,79 +22,75 @@ public class ExprMichaelAdams {
 			String postfix = infixToPostfix(infix);
 
 			// - Invoke postfixEval to evaluate postfix expression
-			double postfixEvaluation = postfixEval(postfix);
 
 			// - Show the calculated result
 			System.out.println("Postfix Expression:\t\t" + postfix);
-			System.out.println("Result value:\t\t" + postfixEvaluation);
 
 			// Allow the user re-run the program
 			System.out.println("Do you want to continue? (Y/N)");
 			wantToContinue = input.nextLine();
 			input.close();
 		}
-
 	}
 
-	public static int precedence(char c) {
-		if (c == '+' || c == '-') {
+	// For finding the order of operations. Higher number means higher precedence
+	static int orderOfOperations(char operator) {
+		// the bigger the number, the higher the orderOfOperations
+		if (operator == '+' || operator == '-') {
 			return 1;
-		} else if (c == '*' || c == '/') {
+		} else if (operator == '*' || operator == '/') {
 			return 2;
-		} else if (c == '^') {
-			return 3;
+		} else {
+			return 0;
 		}
-		return -1;
 	}
 
+	// Converts infix to postfix
 	public static String infixToPostfix(String infix) {
-		String result = "";
-		int size = infix.length();
-		MyStackMichaelAdams<Character> stack = new MyStackMichaelAdams();
-		stack.S = new ArrayList<Character>();
-		for (int i = 0; i < size; i++) {
-			if ((infix.charAt(i) >= '0' && infix.charAt(i) <= '9') || (infix.charAt(i) >= 'a' && infix.charAt(i) <= 'z')
-					|| (infix.charAt(i) >= 'A' && infix.charAt(i) <= 'Z')) {
-				result = result + infix.charAt(i);
+		// Stack to hold operators
+		MyStackMichaelAdams<Character> operators = new MyStackMichaelAdams<Character>();
+		// Stack to hold postfix
+		MyStackMichaelAdams<Object> postfix = new MyStackMichaelAdams<Object>();
+
+		int numberBuffer = 0;
+		boolean bufferingOperand = false;
+		// for each character in infix string, as a char array
+		for (char infixCharacter : infix.toCharArray()) {
+			// if character is greater than 0 and less than 9 (if character is a number)
+			if (infixCharacter >= '0' && infixCharacter <= '9') {
+				//
+				numberBuffer = numberBuffer * 10 + infixCharacter - '0';
+				bufferingOperand = true;
 			} else {
-				if (stack.isEmpty() || infix.charAt(i) == '(') {
-					// Base case
-					// When getting a open parenthesis
-					// Or stack is empty
-					stack.push(infix.charAt(i));
-				} else if (infix.charAt(i) == ')') {
-					// Need to remove stack element until the close bracket
-					while (!stack.isEmpty() && (stack.peek() != '(')) {
-						// Get top element
-						result += stack.peek();
-						// Remove stack element
-						stack.pop();
-					}
-					if (stack.peek() == '(') {
-						// Remove stack element
-						stack.pop();
-					}
-				} else {
-					// Remove stack element until precedence of
-					// top is greater than current infix operator
-					while (!stack.isEmpty() && precedence(infix.charAt(i)) <= precedence(stack.peek())) {
-						// Get top element
-						result += stack.peek();
-						// Remove stack element
-						stack.pop();
-					}
-					// Add new operator
-					stack.push(infix.charAt(i));
+				if (bufferingOperand) {
+					postfix.push(numberBuffer);
+				}
+				numberBuffer = 0;
+				bufferingOperand = false;
+
+				if (infixCharacter == '(') {
+					operators.push('(');
+				} else if (infixCharacter == ')') {
+					while (operators.peek() != '(')
+						postfix.push(operators.pop());
+					operators.pop(); // popping "("
+				} else { // operator
+					while (!operators.isEmpty()
+							&& orderOfOperations(infixCharacter) <= orderOfOperations(operators.peek()))
+						postfix.push(operators.pop());
+					operators.push(infixCharacter);
 				}
 			}
 		}
-		// Add remaining elements
-		while (!stack.isEmpty()) {
-			result += stack.peek();
-			stack.pop();
-		}
-		// Return postfix as a returned String of this method
-		return result;
+
+		if (bufferingOperand)
+			postfix.push(numberBuffer);
+		// While operator stack is not empty, pop and then push to postfix stack
+		while (!operators.isEmpty())
+			postfix.push(operators.pop());
+
+		// Returns postfix stack as string
+		return postfix.toString();
 	}
 
 	public static double postfixEval(String postfix) {
@@ -105,25 +98,26 @@ public class ExprMichaelAdams {
 		int n = postfix.length();
 
 		for (int i = 0; i < n; i++) {
+			System.out.println(stack);
 			if (postfix.charAt(i) == '+' || postfix.charAt(i) == '-' || postfix.charAt(i) == '*'
 					|| postfix.charAt(i) == '/' || postfix.charAt(i) == '^') {
-				// pop top 2 operands.
-				int op1 = stack.pop();
-				int op2 = stack.pop();
+				// pop the top 2 operands
+				int operator1 = stack.pop();
+				int operator2 = stack.pop();
 
-				// evaluate in reverse order i.e. op2 operator op1.
+				// evaluates in reverse order, operator2 before operator
 				switch (postfix.charAt(i)) {
 					case '+':
-						stack.push(op2 + op1);
+						stack.push(operator2 + operator1);
 						break;
 					case '-':
-						stack.push(op2 - op1);
+						stack.push(operator2 - operator1);
 						break;
 					case '*':
-						stack.push(op2 * op1);
+						stack.push(operator2 * operator1);
 						break;
 					case '/':
-						stack.push(op2 / op1);
+						stack.push(operator2 / operator1);
 						break;
 				}
 			}
