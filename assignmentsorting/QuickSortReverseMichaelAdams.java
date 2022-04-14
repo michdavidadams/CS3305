@@ -6,6 +6,7 @@ public class QuickSortReverseMichaelAdams {
     quickSort(inputs, 0, inputs.length - 1);
   }
 
+
   private static void quickSort(int[] inputs, int first, int last) {
     if (last > first) {
       int pivotIndex = partition(inputs, first, last);
@@ -45,34 +46,48 @@ public class QuickSortReverseMichaelAdams {
       inputs[first] = inputs[high];
       inputs[high] = pivot;
       return high;
-    }
-    else {
+    } else {
       return first;
     }
   }
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
 
-        String toContinue = "Y";
-        while (!toContinue.equals("N")) {
-        System.out.println("How many integer numbers do you have?:");
-        int numberOfInputs = input.nextInt();
-        int inputs[] = new int[numberOfInputs];
-        System.out.println("Enter " + numberOfInputs + " integer numbers:");
-        for(int i = 0; i < numberOfInputs; i++) {
-            inputs[i] = input.nextInt();
-        }
-        System.out.println("------------------------------------------------------");
-        quickSort(inputs);
-        for(int i = 0; i < numberOfInputs; i++) {
-            System.out.print(inputs[i] + " ");
-        }
+  public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
 
-        // Ask to run again
-        System.out.println("");
-        System.out.println("Do you want to continue? (Y/N):");
-        toContinue = input.next();
+    String toContinue = "Y";
+    while (!toContinue.equals("N")) {
+      System.out.println("How many integer numbers do you have?:");
+      int numberOfInputs = input.nextInt();
+      int inputs[] = new int[numberOfInputs];
+      System.out.println("Enter " + numberOfInputs + " integer numbers:");
+      for (int i = 0; i < numberOfInputs; i++) {
+        inputs[i] = input.nextInt();
+      }
+      System.out.println("------------------------------------------------------");
+      System.out.println("Inputs array before sorting (quick):  ");
+      for (int i = 0; i < numberOfInputs; i++) {
+        if (i != numberOfInputs - 1) {
+          System.out.print(inputs[i] + ", ");
+        } else {
+          System.out.print(inputs[i]);
+        }
+      }
+      System.out.println("");
+      quickSort(inputs);
+      System.out.println("Inputs array after sorting (quick):  ");
+      for (int i = 0; i < numberOfInputs; i++) {
+        if (i != numberOfInputs - 1) {
+          System.out.print(inputs[i] + ", ");
+        } else {
+          System.out.print(inputs[i]);
+        }
+      }
+
+      // Ask to run again
+      System.out.println("");
+      System.out.println("Do you want to continue? (Y/N):");
+      toContinue = input.next();
     }
-        input.close();
-    }
+    input.close();
+  }
 }
