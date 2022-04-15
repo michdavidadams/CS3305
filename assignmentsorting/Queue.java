@@ -7,7 +7,6 @@
 // E front()
 // int size()
 
-
 public class Queue<E> {
 	public Node head;
 	public Node tail;
@@ -28,7 +27,7 @@ public class Queue<E> {
 		}
 	}
 
-// Method for enqueue (same as addlast for linked list)
+	// Method for enqueue (same as addlast for linked list)
 	public void enqueue(E data) {
 		Node newNode = new Node(data);
 		if (tail == null) // case for if our Queue is empty
@@ -39,16 +38,15 @@ public class Queue<E> {
 		}
 	}
 
-// Method for dequeue 
+	// Method for dequeue
 	public E dequeue() throws RuntimeException {
 		int size = size();
 		Node temp;
 
 		if (size == 0) {
-			//System.out.println("DQEUEUE() ERROR: QUEUE IS EMPTY");
+			// System.out.println("DQEUEUE() ERROR: QUEUE IS EMPTY");
 			throw new RuntimeException("DEQUEUE() ERROR: QUEUE IS EMPTY");
-		}
-		else if (size == 1) // if our queue has only one element
+		} else if (size == 1) // if our queue has only one element
 		{
 			temp = head;
 			head = tail = null;
@@ -59,10 +57,11 @@ public class Queue<E> {
 			head = head.next; // Make the head point to the 2nd node
 			return temp.data;
 		}
-		
+
 	}
 
-	// Method for size, counts and gives us the number of elements (nodes) in our Queue
+	// Method for size, counts and gives us the number of elements (nodes) in our
+	// Queue
 	public int size() {
 		Node temp;
 		int size = 0; // Create int variable to store the number of nodes
@@ -76,7 +75,8 @@ public class Queue<E> {
 						// remove/add at an index >= Count)
 	}
 
-// Method for front, looks at the 1st element of the Queue and returns that element
+	// Method for front, looks at the 1st element of the Queue and returns that
+	// element
 	public E front() {
 		E retVal;
 		if (isEmpty() == false)
@@ -102,9 +102,9 @@ public class Queue<E> {
 		temp = head;
 		while (temp != null) {
 			str = str + temp.data;
-			if(temp.next != null)
+			if (temp.next != null)
 				str += ", ";
-			temp = temp.next;			
+			temp = temp.next;
 		}
 		return str + "]";
 
